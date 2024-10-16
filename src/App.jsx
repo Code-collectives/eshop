@@ -20,7 +20,7 @@ import AboutUs from './pages/AboutUs'
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/terms",
       element: <TermsOfService />
     },
     {
@@ -32,11 +32,11 @@ function App() {
       element: <VendorLoginForm />
     },
     {
-      path: "/view", 
+      path: "/", 
       element: <LandingPage />
     },
     {
-      path:"/hero",
+      path:"/gh",
       element:<DashboardLayout/>,
       children:[
        { index: true,

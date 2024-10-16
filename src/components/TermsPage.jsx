@@ -60,7 +60,7 @@ const TermsOfService = () => {
   } px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brandGreeen focus:ring-opacity-50`}
   onClick={(e) => !isChecked && e.preventDefault()}
 >
-  Vendor Form
+  Vendor
 </Link>
 
         
@@ -73,7 +73,7 @@ const TermsOfService = () => {
   } px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brandGreeen focus:ring-opacity-50`}
   onClick={(e) => !isChecked && e.preventDefault()}
 >
-  User Form
+  User
 </Link>
         </div>
       </div>

@@ -6,12 +6,13 @@ import NavBar from '../components/NavBar'
 
 import Services from '../components/Services'
 import Footer from '../components/Footer'
+import LandingNav from '../components/LandingNav'
 
 function LandingPage() {
   return (
     <div className='bg-white dark:bg-gray-900 dark:text-white
     duration-200 overflow-hidden'>
-<NavBar />
+<LandingNav/>
 <Hero />
 <Category />
 <Category2 />
