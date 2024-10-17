@@ -13,6 +13,7 @@ import UserLoginForm from './components/UserForm'
 import DashboardLayout from './layout/DashboardLayout'
 import VendorView from './components/VendorView'
 import AboutUs from './pages/AboutUs'
+import Advertpage from './pages/Advertpage'
 
 
 
@@ -32,11 +33,11 @@ function App() {
       element: <VendorLoginForm />
     },
     {
-      path: "/", 
+      path: "/juf", 
       element: <LandingPage />
     },
     {
-      path:"/gh",
+      path:"/",
       element:<DashboardLayout/>,
       children:[
        { index: true,
@@ -47,8 +48,11 @@ function App() {
     {
       path:"/aboutus",
       element:<AboutUs />
-    }
-
+    },
+    {
+      path: "/advertpage",
+      element: <Advertpage />
+    },
   
     
   ])
