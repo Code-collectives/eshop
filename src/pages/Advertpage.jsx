@@ -3,6 +3,7 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import image2 from "../assets/website/image2.png"
+import Hero from '../components/Hero';
 
 
 const gadgets = [
@@ -124,7 +125,35 @@ const gadgets = [
         price: 199.99,
       },
       {
-        id: 15,
+        id: 16,
+        img:image2,
+        name: 'Headphones',
+        description: 'Noise-canceling headphones for the best audio experience.',
+        price: 199.99,
+      },
+      {
+        id: 17,
+        img:image2,
+        name: 'Headphones',
+        description: 'Noise-canceling headphones for the best audio experience.',
+        price: 199.99,
+      },
+      {
+        id: 18,
+        img:image2,
+        name: 'Headphones',
+        description: 'Noise-canceling headphones for the best audio experience.',
+        price: 199.99,
+      },
+      {
+        id: 19,
+        img:image2,
+        name: 'Headphones',
+        description: 'Noise-canceling headphones for the best audio experience.',
+        price: 199.99,
+      },
+      {
+        id: 20,
         img:image2,
         name: 'Headphones',
         description: 'Noise-canceling headphones for the best audio experience.',
@@ -143,9 +172,11 @@ const gadgets = [
 
 function Advertpage() {
   return (
-    <div>
+
+
+ <div>
         <NavBar/>
-        <nav className="bg-white p-4">
+        <nav className="bg-white p-4 mt-10" >
       <ul className="flex space-x-6 justify-center text-blue">
         <li>
           <Link to="/categories" className="text-primary inline-block border-b-2 border-primary  pb-1  font-semibold">Categories</Link>
@@ -165,30 +196,38 @@ function Advertpage() {
       </ul>
     </nav>
 
+<div className ="mt-10">
+    <Hero />
+</div>
+    
     
   
-    <div className="container mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">PRODUCTS</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="container mx-auto p-10">
+      <h1 className="text-2xl font-bold mb-10">PRODUCTS</h1>
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-44">
         {gadgets.map((product) => (
-          <div key={product.id} className="bg-white rounded-lg shadow-md p-4">
-            <img src={product.img} alt="topic" className='' />
+          <div key={product.id} className="bg-white border border-gray-200 shadow-md  p-4 text-center">
+            <img src={product.img} alt="topic" className='mb-10' />
+            <p class="text-gray-500 lowercase text-sm">Category</p>
             <h2 className="text-lg font-semibold">{product.name}</h2>
-            <p className="text-gray-600 mt-2">{product.description}</p>
-            <p className="text-xl font-bold text-red-500 mt-4">${product.price.toFixed(2)}</p>
+            <p className="text-gray-600 mt-2 mb-4">{product.description}</p>
+            <p className="text-xl font-bold text-primary">${product.price.toFixed(2)}</p>
+            <div class="flex justify-center mt-2">
+      
+      
+    </div>
+    
+
+
+            
           </div>
+
+          
         ))}
       </div>
     </div>
-  
-
 
     
-
-
-
-
-
 
 
 
