@@ -33,7 +33,7 @@ function App() {
       element: <VendorLoginForm />
     },
     {
-      path: "/juf", 
+      path: "/gh", 
       element: <LandingPage />
     },
     {
@@ -53,6 +53,14 @@ function App() {
       path: "/advertpage",
       element: <Advertpage />
     },
+    {
+      path: "/ProductForm",
+      element: <ProductForm />
+    },
+
+    {path:"editform/:id",
+      element:<EditProductForm/>
+    }
   
     
   ])
