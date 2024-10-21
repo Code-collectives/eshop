@@ -52,7 +52,7 @@ const TermsOfService = () => {
         <div className="mt-4 flex justify-center space-x-4">
      
         <Link
-  to="/vendorform"
+  to="/vendorSignup"
   className={`${
     isChecked
       ? "bg-brandGreeen text-white"
@@ -65,7 +65,7 @@ const TermsOfService = () => {
 
         
 <Link
-  to="/userform"
+  to="/UserSignup"
   className={`${
     isChecked
       ? "bg-brandGreeen text-white"

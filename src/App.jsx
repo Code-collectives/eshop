@@ -14,6 +14,8 @@ import DashboardLayout from './layout/DashboardLayout'
 import VendorView from './components/VendorView'
 import AboutUs from './pages/AboutUs'
 import Advertpage from './pages/Advertpage'
+import VendorSignup from './pages/VendorSignup'
+import UserSignup from './pages/UserSignup'
 
 
 
@@ -60,9 +62,15 @@ function App() {
 
     {path:"editform/:id",
       element:<EditProductForm/>
-    }
+    },
   
+    {path:"/vendorSignup",
+      element:<VendorSignup/>
+    },
     
+    {path:"/UserSignup",
+      element:<UserSignup/>
+    }
   ])
 
  
