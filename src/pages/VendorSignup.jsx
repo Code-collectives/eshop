@@ -1,8 +1,7 @@
 import React from 'react'
 import Footer from '../components/Footer'
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { FaGoogle, FaFacebook } from "react-icons/fa";
 import LandingNav from '../components/LandingNav';
 
 
@@ -82,12 +81,12 @@ function VendorSignup() {
 
           <div className="flex justify-center mt-10">
             <button className="flex items-center bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2">
-              <FontAwesomeIcon icon={faFacebook} className="mr-2" /> Facebook
+            <FaFacebook className="mr-2" /> Facebook
 
             </button>
             <button className="flex items-center bg-primary text-white font-bold py-2 px-4 rounded">
-              <FontAwesomeIcon icon={faGoogle} className="mr-2" />
-              Google
+            <FaGoogle className="mr-2" />
+                            Google
             </button>
           </div>
         </div>

@@ -35,11 +35,11 @@ function App() {
       element: <VendorLoginForm />
     },
     {
-      path: "/gh", 
+      path: "/", 
       element: <LandingPage />
     },
     {
-      path:"/",
+      path:"/fg",
       element:<DashboardLayout/>,
       children:[
        { index: true,
