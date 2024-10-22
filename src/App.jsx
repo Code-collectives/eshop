@@ -35,7 +35,7 @@ function App() {
       element: <VendorLoginForm />
     },
     {
-      path: "/", 
+      path: "/gh", 
       element: <LandingPage />
     },
     {
@@ -48,7 +48,7 @@ function App() {
       ]
     },
     {
-      path:"/aboutus",
+      path:"/",
       element:<AboutUs />
     },
     {

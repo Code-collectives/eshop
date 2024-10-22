@@ -2,7 +2,8 @@ import React from 'react'
 import Navbar from '../components/Navbar2'
 import Sidebar from '../components/SideBar'
 import { Outlet } from 'react-router-dom'
-import Footer from '../components/Footer'
+
+import DashFooter from '../components/DashboardFoot'
 
 const DashboardLayout = () => {
   return (
@@ -16,7 +17,7 @@ const DashboardLayout = () => {
           </div>
           <Outlet />
         </div>
-        <Footer />
+        <DashFooter/>
        
       
     </div>
