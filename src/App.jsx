@@ -16,6 +16,7 @@ import AboutUs from './pages/AboutUs'
 import Advertpage from './pages/Advertpage'
 import VendorSignup from './pages/VendorSignup'
 import UserSignup from './pages/UserSignup'
+import SingleProduct from './pages/SingleProduct'
 
 
 
@@ -70,7 +71,10 @@ function App() {
     
     {path:"/UserSignup",
       element:<UserSignup/>
-    }
+    },
+    {path:"/single/:advertid",
+      element:<SingleProduct/>
+    },
   ])
 
  
