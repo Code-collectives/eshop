@@ -116,9 +116,7 @@ const LandingNav = () => {
               </div>
 
              
-              <Link to="/terms" className='font-semibold text-gray-500 hover:text-black dark:hover:text-white duration-200'>
-                Sign Up
-              </Link>
+            
             </div>
           </div>
         </div>

@@ -17,7 +17,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-64 h-[100vh] fixed bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-100 p-5 max-h-screen"> 
+    <div className=" w-64 h-[100vh] fixed bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-100 p-5 max-h-screen"> 
       <div className="flex flex-col items-center space-y-4">
         <a href={image1} className="block w-24 h-24 rounded-full overflow-hidden border-4 border-red-600 shadow-lg">
           <img src={image1} alt="Profile" className="w-full h-full object-cover" />
@@ -67,7 +67,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className="mt-32">
+      <div className="mt-10">
         <DarkMode />
       </div>
     </div>
