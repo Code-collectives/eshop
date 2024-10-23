@@ -20,10 +20,10 @@ const VendorLoginForm = () => {
 
       if (response.ok) {
         const data = await response.json();
-        // Handle successful login, e.g., redirect or store token
+      
         console.log('Login successful:', data);
       } else {
-        setError('Invalid email or password.'); // Set error message on failure
+        setError('Invalid email or password.'); 
       }
     } catch (error) {
       console.error('Error during login:', error);
@@ -35,7 +35,7 @@ const VendorLoginForm = () => {
     <div className="max-w-md mx-auto mt-10 p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">Vendor Login</h2>
 
-      {error && <p className="text-red-500 mb-4">{error}</p>} {/* Error message */}
+      {error && <p className="text-red-500 mb-4">{error}</p>} 
 
       <form onSubmit={handleSubmit}>
         {/* Email Field */}
@@ -44,10 +44,11 @@ const VendorLoginForm = () => {
             Email
           </label>
           <input
+          name=""
             type="email"
             id="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+           
             required
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
           />
@@ -59,10 +60,11 @@ const VendorLoginForm = () => {
             Password
           </label>
           <input
+        name=""
             type="password"
             id="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+       
             required
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
           />
@@ -71,7 +73,7 @@ const VendorLoginForm = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
+          className="w-full bg-gray-900 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
         >
           Login
         </button>

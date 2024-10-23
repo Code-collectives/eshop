@@ -1,8 +1,8 @@
 import { FaHeart, FaPhoneAlt, FaInstagram, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 
-const Footer = () => {
+const DashFooter = () => {
   return (
-    <div className="bg-gray-100 dark:bg-gray-500">
+    <div className="bg-gray-100 dark:bg-gray-500 w-[84%] float-end ">
       <div className="container mx-auto py-10 px-5">
         <div className="grid md:grid-cols-4 gap-8 text-center md:text-left">
           
@@ -15,11 +15,11 @@ const Footer = () => {
               Lorem ipsum dolor sit amet consectetur adipiscing elit. Cum in beatae ea recusandae blanditiis veritatis.
             </p>
             <p className="text-gray-500 mt-4 flex items-center justify-center md:justify-start">
-              Made with <FaHeart className="mx-2 text-red-600" /> by The Code Collectives
+              Made with <FaHeart className="mx-2 text-red-600" /> by The Code collective
             </p>
           </div>
 
-     
+          {/* Important Links */}
           <div className="py-4">
             <h4 className="text-lg font-semibold text-gray-900 dark:text-white">Important Links</h4>
             <ul className="mt-4 text-gray-700 space-y-2">
@@ -30,7 +30,7 @@ const Footer = () => {
             </ul>
           </div>
 
-      
+          {/* Links */}
           <div className="py-4">
             <h4 className="text-lg font-semibold text-gray-900 dark:text-white">Links</h4>
             <ul className="mt-4 text-gray-700 space-y-2">
@@ -41,7 +41,7 @@ const Footer = () => {
             </ul>
           </div>
 
-       
+          {/* Contact info and social media */}
           <div className="py-4">
             <h4 className="text-lg font-semibold text-gray-900 dark:text-white">Contact</h4>
             <p className="mt-4 text-gray-700">osu close, plot n. 7</p>
@@ -61,4 +61,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default DashFooter;

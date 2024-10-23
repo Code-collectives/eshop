@@ -58,11 +58,12 @@ const ProductForm = () => {
   };
 
   return (
+    <div className='bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-hidden'>
     <div className="max-w-md mx-auto mt-10 p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">Add New Product</h2>
 
       <form onSubmit={handleSubmit}>
-        {/* Title */}
+      
         <div className="mb-4">
           <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="title">
             Title
@@ -78,7 +79,7 @@ const ProductForm = () => {
           />
         </div>
 
-        {/* Description */}
+       
         <div className="mb-4">
           <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="description">
             Description
@@ -93,7 +94,7 @@ const ProductForm = () => {
           />
         </div>
 
-        {/* Image */}
+        
         <div className="mb-4">
           <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="image">
             Image
@@ -109,7 +110,7 @@ const ProductForm = () => {
           />
         </div>
 
-        {/* Price */}
+        
         <div className="mb-4">
           <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="price">
             Price
@@ -125,7 +126,7 @@ const ProductForm = () => {
           />
         </div>
 
-        {/* Category */}
+       
         <div className="mb-4">
   <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="category">
     Category
@@ -147,14 +148,15 @@ const ProductForm = () => {
 </div>
 
 
-        {/* Submit Button */}
+       
         <button
           type="submit"
-          className="w-full bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50"
+          className="w-full bg-brandBlue text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50"
         >
           Submit Product
         </button>
       </form>
+    </div>
     </div>
   );
 };
