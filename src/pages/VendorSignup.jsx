@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import Footer from '../components/Footer'
 import { Link } from 'react-router-dom';
 import { FaGoogle, FaFacebook } from "react-icons/fa";
-import LandingNav from '../components/LandingNav';
+
 import { apiSignup } from '../components/services/Auth';
 import { useNavigate } from 'react-router-dom';
+import LandingNav from '../components/NavBar';
 
 
 function VendorSignup() {
@@ -14,34 +15,45 @@ const navigate = useNavigate()
 
   const handleSubmit = async (event) => {
     event.preventDefault() // prevent the page from reloading
-    try { 
+ 
       setLoading(true)
       //prepare data to be sent to backend
       const formData = new FormData (event.target) // takes the data from the form
      
        const name = formData.get("name")
-       const bussinessName = formData.get("bussinessName")
+      //  const bussinessName = formData.get("bussinessName")
        const email = formData.get("email")
        const confirmpass = formData.get("confirmpass")
        const password = formData.get("password")
-       const role = formData.get("role")
-   console.log(name)
+       const role = formData.get("role") //we do not need role for now since only vendors are signing in  or registering
+
+       const payload = {name:name,email:email, password:password, role:"vendor"}
+
 
        //check if pass match
-       if(password !== confirmpass){
-return
+       if(!name || !email){
+        alert("Please make sure all fields are filled")
+        setLoading(false)
+        
+       }else if(password !== confirmpass){
+        alert("passwords does not match. Try Again!")
+        setLoading(false)
+       }else{
 
+        try{
+          const response = await apiSignup(payload)
+          console.log(response.data)
+          setLoading(false)
+          navigate ("/vendorform")
+        }catch(err){
+          console.log("error: ", err)
+          setLoading(false)
+          alert("An error occurred please try again")
+          return;
+        }      
+      
+       
        }
-
-       const payload = {bussinessName:bussinessName,name:name,email:email, password:password, role:"vendor"}
-     
-      const response = await apiSignup(payload)
-console.log(response.data)
-    } catch(error) {
-  console.log(error)
-  //if the message is message successfull then you redirect them to the login page but if they give us a token then we send them straight to the vendor page
-  navigate ("/fg")
-    } finally {setLoading(false)}
     
   }
   return (
@@ -68,7 +80,7 @@ console.log(response.data)
               />
             </div>
 
-            <div className="mb-4">
+            {/* <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                 Bussiness Name
               </label>
@@ -81,7 +93,7 @@ console.log(response.data)
                 placeholder="Your Name"
                 required
               />
-            </div>
+            </div> */}
 
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
@@ -124,7 +136,7 @@ console.log(response.data)
               
                 required
               />
-                <div className="mb-4">
+                {/* <div className="mb-4">
           <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="role">
            Role
           </label>
@@ -137,7 +149,7 @@ console.log(response.data)
             <option value="option1">User</option>
             <option value="option2">vendor</option>
           </select>
-        </div> 
+        </div>  */}
             
             </div>
 
@@ -157,7 +169,7 @@ console.log(response.data)
 
 
 <div className='flex justify-center items-center'>   <Link
-                        to="/userform"
+                        to="/vendorform"
                         className="text-gray-900 font-bold "
                         type="submit"
                     >
@@ -165,7 +177,7 @@ console.log(response.data)
                     </Link></div>
                     
 
-          <div className="flex justify-center mt-10">
+          {/* <div className="flex justify-center mt-10">
             <button className="flex items-center bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2">
             <FaFacebook className="mr-2" /> Facebook
 
@@ -174,7 +186,7 @@ console.log(response.data)
             <FaGoogle className="mr-2" />
                             Google
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
 

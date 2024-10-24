@@ -1,162 +1,151 @@
-import React, { useState } from 'react';
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { apiAddProducts } from "./services/product";
 
 const ProductForm = () => {
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    image: '',
-    price: '',
-    category: ''
-  });
+  const navigate = useNavigate();
 
-  // Handle form field changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
+  // const saveAdvert = async (event) => {
+  //   event.preventDefault();
 
-  // Handle image change
-  const handleImageChange = (e) => {
-    setFormData({
-      ...formData,
-      image: e.target.files[0] // Store the image file
-    });
-  };
+  //   const formData = new FormData(event.target);
+  //   await axios.post(apiAddProducts, formData);
+  //   navigate("/vendorDashboard");
+  // console.log(formData)
 
-  // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Prepare form data to send via API
-    const apiFormData = new FormData();
-    apiFormData.append('title', formData.title);
-    apiFormData.append('description', formData.description);
-    apiFormData.append('image', formData.image);
-    apiFormData.append('price', formData.price);
-    apiFormData.append('category', formData.category);
-
+  // };
+  const saveAdvert = async (event) => {
+    event.preventDefault();
+  
+    const formData = new FormData(event.target);
+  
     try {
-      // Send form data to API
-      const response = await fetch('https://your-api-endpoint.com/products', {
-        method: 'POST',
-        body: apiFormData,
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        alert('Product added successfully!');
-      } else {
-        alert('Failed to add product.');
+      // Debugging the form data entries
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
       }
+  
+      
+      const response = await apiAddProducts(formData);
+  
+      console.log('Advert saved:', response.data);
+      navigate("/vendorDashboard"); // Redirect after success
     } catch (error) {
-      console.error('Error:', error);
-      alert('Error submitting form.');
+      console.error('Error saving advert:', error);
     }
   };
+  
 
   return (
-    <div className='bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-hidden'>
-    <div className="max-w-md mx-auto mt-10 p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">Add New Product</h2>
+    <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-hidden">
+      <div className="max-w-md mx-auto mt-10 p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+        <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">
+          Add New Product
+        </h2>
 
-      <form onSubmit={handleSubmit}>
-      
-        <div className="mb-4">
-          <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="title">
-            Title
-          </label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            required
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
-          />
-        </div>
+        <form onSubmit={saveAdvert}>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
+              htmlFor="title"
+            >
+              Title
+            </label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              required
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+            />
+          </div>
 
-       
-        <div className="mb-4">
-          <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="description">
-            Description
-          </label>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            required
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
-          />
-        </div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
+              htmlFor="description"
+            >
+              Description
+            </label>
+            <textarea
+              id="description"
+              name="description"
+              required
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+            />
+          </div>
 
-        
-        <div className="mb-4">
-          <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="image">
-            Image
-          </label>
-          <input
-            type="file"
-            id="image"
-            name="image"
-            accept="image/*"
-            onChange={handleImageChange}
-            required
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
-          />
-        </div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
+              htmlFor="image"
+            >
+              Image
+            </label>
+            <input
+              type="file"
+              id="image"
+              name="media"
+              required
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+            />
+          </div>
 
-        
-        <div className="mb-4">
-          <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="price">
-            Price
-          </label>
-          <input
-            type="number"
-            id="price"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            required
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
-          />
-        </div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
+              htmlFor="price"
+            >
+              Price
+            </label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              required
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+            />
+          </div>
 
-       
-        <div className="mb-4">
-  <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="category">
-    Category
-  </label>
-  <select
-    id="category"
-    name="category"
-    value={formData.category}
-    onChange={handleChange}
-    required
-    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
+              htmlFor="category"
+            >
+              Category
+            </label>
+            <select
+              id="category"
+              name="category"
+              required
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+            >
+              <option value="">Select a category</option>
+              <option value="phones">Phones</option>
+              <option value="laptop">Laptop</option>
+              <option value="vr">VR</option>
+              <option value="electronics">Accessories</option>
+            </select>
+          </div>
+
+          <div className="space-y-4">
+  <button
+    type="submit"
+    className="w-full bg-brandBlue text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 block"
   >
-    <option value="">Select a category</option>
-    <option value="phones">Phones</option>
-    <option value="laptop">Laptop</option>
-    <option value="vr">VR</option>
-    <option value="electronics">Electronics</option>
-  </select>
+    Submit Product
+  </button>
+
+  <Link
+    to="/vendorDashboard"
+    className="w-full bg-transparent text-brandBlue font-bold py-2 px-4 rounded-lg border border-brandBlue hover:bg-brandBlue hover:text-white focus:outline-none focus:ring-2 focus:ring-brandBlue focus:ring-opacity-50 block text-center"
+  >
+    Cancel
+  </Link>
 </div>
 
-
-       
-        <button
-          type="submit"
-          className="w-full bg-brandBlue text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50"
-        >
-          Submit Product
-        </button>
-      </form>
-    </div>
+        </form>
+      </div>
     </div>
   );
 };

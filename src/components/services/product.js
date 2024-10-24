@@ -7,9 +7,16 @@ export const apiGetProducts = async () => {
 
 
 //add product
-export const apiAddProducts = async () => {
-    return apiClient.post("/adverts")
-   };
+// Ensure apiAddProducts is set up to take `FormData` directly
+export const apiAddProducts = async (formData) => {
+    return apiClient.post("/adverts", formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+};
+
+
 
    //get single product
 export const apiGetSingleProduct =async (id   ) => {
@@ -18,13 +25,13 @@ export const apiGetSingleProduct =async (id   ) => {
 }
 
 // edit product
-export const apiEditProduct =async (id   ) => {
-    return apiClient.patch(`/aderts/${id}`); 
+export const apiEditProduct =async (id, payload) => {
+    return apiClient.patch(`/aderts/${id}`, payload); 
   
 }
 
 //delete product
 export const apiDeleteProduct =async (id   ) => {
-    return apiClient.patch(`/adverts/${id}`); 
+    return apiClient.delete(`/adverts/${id}`); 
   
 }
