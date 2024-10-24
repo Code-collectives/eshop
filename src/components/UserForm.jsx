@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 const UserLoginForm = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  // const [username, setUsername] = useState('');
+  // const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
 
@@ -41,9 +41,10 @@ const UserLoginForm = () => {
      
         <div className="mb-4">
           <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="username">
-            Username / Email
+           Email
           </label>
           <input
+          name="email"
             type="text"
             id="username"
             value={username}
@@ -59,6 +60,7 @@ const UserLoginForm = () => {
             Password
           </label>
           <input
+          name= "password"
             type="password"
             id="password"
             value={password}

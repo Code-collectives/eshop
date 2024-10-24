@@ -40,7 +40,7 @@ console.log(response.data)
     } catch(error) {
   console.log(error)
   //if the message is message successfull then you redirect them to the login page but if they give us a token then we send them straight to the vendor page
-  navigate ("/fg")
+  navigate ("/UserSignup")
     } finally {setLoading(false)}
     
   }
@@ -157,7 +157,7 @@ console.log(response.data)
 
 
 <div className='flex justify-center items-center'>   <Link
-                        to="/userform"
+                        to="/vendorform"
                         className="text-gray-900 font-bold "
                         type="submit"
                     >

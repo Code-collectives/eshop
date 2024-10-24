@@ -64,7 +64,7 @@ const LandingNav = () => {
                   {MenuLinks.map((data, index) => (
                     <li key={index}>
                       <a href={data.link}
-                        className='inline-block px-4 font-semibold text-gray-500 hover:text-black dark:hover:text-white duration-200'>
+                        className='inline-block px-4 font-semibold text-gray-500 hover:text-black dark:text-white  duration-200'>
                         {data.name}
                       </a>
                     </li>
