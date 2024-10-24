@@ -1,22 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Hero from '../components/Hero';
 import { apiGetProducts } from '../components/services/product';
 import ApiGet from '../components/ApiGet';
 
 function Advertpage() {
   const [Adverts, setAdverts] = useState([]); 
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+  const searchQuery = queryParams.get('search');
 
   const fetchData = async () => {
     try {
-      const response = await apiGetProducts(); 
-      console.log("API Response:", response);  
+      let response;
 
-    
-      const products = response.data || []; 
-      setAdverts(products);
+      if (searchQuery) {
+        // If search query exists, fetch search results from API
+        response = await fetch(`apiGetProducts?search=${title(searchQuery)}`);
+      } else {
+        // Fetch all products if no search query
+        response = await apiGetProducts();
+      }
+
+
+      // const response = await apiGetProducts(); 
+      // console.log("API Response:", response);  
+
+      const data = await response.json();
+      setAdverts(data || []); 
+      // const products = response.data || []; 
+      // setAdverts(products);
     } catch (error) {
       console.error("Error fetching products:", error.message); 
     }
@@ -24,7 +40,7 @@ function Advertpage() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [searchQuery]);
 
   return (
     <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-hidden">
@@ -36,7 +52,7 @@ function Advertpage() {
               to="/categories"
               className="text-primary inline-block border-b-2 border-primary pb-1 font-semibold"
             >
-              Categories
+              All Categories
             </Link>
           </li>
           <li>

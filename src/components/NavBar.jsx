@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { IoMdSearch } from "react-icons/io";
 import { FaCartShopping, FaCaretDown } from "react-icons/fa6";
 import DarkMode from './DrakMode';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const MenuLinks = [
   {
@@ -13,13 +13,8 @@ const MenuLinks = [
   {
     id: 3,
     name: "About",
-    link: "/aboutus",
-  },
-  {
-    id: 4,
-    name: "Blogs",
-    link: "/#blogs",
-  },
+    link: "/About",
+  }
 ];
 
 const DropdownLinks = [
@@ -41,6 +36,16 @@ const DropdownLinks = [
 ];
 
 const LandingNav = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+     
+      navigate(`/advert?search=${encodeURIComponent(searchQuery)}`);
+    }
+  };
   
   const [showModal, setShowModal] = useState(false);
 
@@ -54,7 +59,7 @@ const LandingNav = () => {
           <div className='container flex justify-between items-center'>
            
             <div className='flex items-center gap-4'>
-              <a href="#"
+              <a href="/"
                 className='text-primary font-semibold tracking-widest text-2xl uppercase sm:text-3xl'>
                 Eshop
               </a>
@@ -70,7 +75,7 @@ const LandingNav = () => {
                     </li>
                   ))}
                   
-                  <li className='relative cursor-pointer group'>
+                  {/* <li className='relative cursor-pointer group'>
                     <a href="#" className='flex items-center gap-[20] font-semibold text-gray-500 dark:hover:text-white py-2'>
                       Quick Links
                       <span>
@@ -89,7 +94,7 @@ const LandingNav = () => {
                         ))}
                       </ul>
                     </div>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
@@ -98,22 +103,37 @@ const LandingNav = () => {
             <div className='flex justify-between items-center gap-4'>
               
               <div className='relative group hidden sm:block'>
-                <input type="text" placeholder='search' className='search-bar' />
-                <IoMdSearch className='text-xl text-gray-600 group-hover:text-primary dark:text-gray-400 absolute top-1/2 -translate-y-1/2 right-3 duration-200' />
-              </div>
+              <form onSubmit={handleSearch}>
+  <input 
+    type="text" 
+    placeholder="search" 
+    className="search-bar"
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+  />
+  <button type="submit">
+    <IoMdSearch className="text-xl text-gray-600 group-hover:text-primary dark:text-gray-400 absolute top-1/2 -translate-y-1/2 right-3 duration-200" />
+  </button>
+</form>
 
+              </div>
+              
+              <div>
+                <DarkMode />
+              </div>
              
-              <button className='relative p-3' onClick={toggleModal}>
+              {/* <button className='relative p-3' onClick={toggleModal}>
 <FaCartShopping className='text-xl text-gray-600
  dark:text-gray-400' />
  <div className='w-4 h-4 bg-red-500 text-white rounded-full absolute top-0 right-0 flex items-center justify-center text-xs'>
   4 
  </div>
-</button>
+</button> */}
+              <Link to="/vendorForm" className='font-semibold text-gray-500 hover:text-black dark:hover:text-white duration-200'>
+                Login as Vendor
+              </Link>
 
-              <div>
-                <DarkMode />
-              </div>
+              
 
              
             

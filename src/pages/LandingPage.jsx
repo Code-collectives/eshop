@@ -6,7 +6,8 @@ import NavBar from '../components/NavBar'
 
 import Services from '../components/Services'
 import Footer from '../components/Footer'
-import LandingNav from '../components/LandingNav'
+import LandingNav from '../components/NavBar'
+
 
 function LandingPage() {
   return (

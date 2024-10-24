@@ -13,8 +13,9 @@ import image10 from '../assets/website/testm3.png';
 import Footer from '../components/Footer';
 import MindAsk from '../components/MindAsk';
 import FaqSection from '../components/Faq';
-import LandingNav from '../components/LandingNav';
+
 import MemberWrapper from '../components/TestimonalWrapper';
+import LandingNav from '../components/NavBar';
 
 
 function AboutUs() {

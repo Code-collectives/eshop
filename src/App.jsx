@@ -36,11 +36,11 @@ function App() {
       element: <VendorLoginForm />
     },
     {
-      path: "/gh", 
+      path: "/logOutPage", 
       element: <LandingPage />
     },
     {
-      path:"/fg",
+      path:"/vendorDashboard",
       element:<DashboardLayout/>,
       children:[
        { index: true,
@@ -49,11 +49,11 @@ function App() {
       ]
     },
     {
-      path:"/",
+      path:"/About",
       element:<AboutUs />
     },
     {
-      path: "/advertpage",
+      path: "/",
       element: <Advertpage />
     },
     {
