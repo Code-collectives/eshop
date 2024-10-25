@@ -6,3 +6,6 @@ export const apiSignup = async (payload) => {
 //authantigating for login
 export const apiLogin = async (payload) => 
    apiClient.post("/users/signIn", payload )
+
+export const apiProfile = async () => 
+    apiClient.post("/users/profile")

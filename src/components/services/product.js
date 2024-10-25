@@ -1,37 +1,41 @@
 import { apiClient } from "./config";
-//get product
 
+// Get all products
 export const apiGetProducts = async () => {
- return apiClient.get("/adverts")
+  return apiClient.get("/adverts");
 };
 
+// Add product
 
-//add product
-// Ensure apiAddProducts is set up to take `FormData` directly
 export const apiAddProducts = async (formData) => {
-    return apiClient.post("/adverts", formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+  return apiClient.post("/adverts", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data", 
+    },
+  });
 };
 
+// Get a single product by ID
+export const apiGetSingleProduct = async (id) => {
+  return apiClient.get(`/adverts/${id}`);
+};
 
+// Edit product
 
-   //get single product
-export const apiGetSingleProduct =async (id   ) => {
-    return apiClient.get(`/adverts/${id}`); 
-  
-}
+export const apiEditProduct = async (id, formData) => {
+  return apiClient.patch(`/adverts/${id}`, formData);
+};
 
-// edit product
-export const apiEditProduct =async (id, payload) => {
-    return apiClient.patch(`/aderts/${id}`, payload); 
-  
-}
-
-//delete product
-export const apiDeleteProduct =async (id   ) => {
-    return apiClient.delete(`/adverts/${id}`); 
-  
-}
+// Delete product
+export const apiDeleteProduct = async (id) => {
+  return apiClient.delete(`/adverts/${id}`);
+};
+export const apiGetVendorProducts = async () => {
+  return apiClient.get("/users/me/adverts");
+};
+export const apiGetVendorProfile = async () => {
+  return apiClient.get("/users/me");
+};
+export const apiGetFilteredCategories = async (category) => {
+  return apiClient.get(`/adverts?filter={"category" : ${category}}`);
+};

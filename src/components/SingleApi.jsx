@@ -3,7 +3,7 @@ import React from 'react';
 const SingleApiGet = ({ title, description, category, media, price }) => {
   return (
     <div className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700  p-4 flex items-center space-x-6 h-36">
-      <img src={media} alt={title} className="w-48 h-auto object-cover" />
+      <img src={`https://savefiles.org/${media}?shareable_link=462`} alt={title} className="w-48 h-auto object-cover" />
       <div className="flex flex-col justify-between">
         <div>
           <p className="text-gray-500 lowercase text-sm">{category}</p>

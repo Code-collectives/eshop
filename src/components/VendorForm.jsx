@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { apiLogin } from './services/Auth';
+import { apiLogin, apiProfile } from './services/Auth';
 import { Link } from 'react-router-dom';
 import LandingNav from './NavBar';
 import { useNavigate } from 'react-router-dom';
+import { apiGetSingleProduct, apiGetVendorProfile } from './services/product';
 
 const VendorLoginForm = () => {
   const navigate = useNavigate()
@@ -18,8 +19,14 @@ console.log(email)
 const response = await apiLogin({email, password});
 // console.log(response.data);
 if(response.status===200){
-  localStorage.setItem("token", response.data.accessToken)
-  navigate ("/vendorDashboard")
+  localStorage.setItem("token", response.data.accessToken);
+ 
+  //get user profile
+    navigate ("/vendorDashboard")
+ 
+  //console.log( response.data)
+
+  
 
 }
 

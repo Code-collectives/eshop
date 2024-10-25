@@ -1,50 +1,85 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Hero from '../components/Hero';
-import { apiGetProducts } from '../components/services/product';
+import { apiGetFilteredCategories, apiGetProducts } from '../components/services/product';
 import ApiGet from '../components/ApiGet';
+import { IoMdSearch } from "react-icons/io";
 
 function Advertpage() {
   const [Adverts, setAdverts] = useState([]); 
-  const location = useLocation();
+ 
+const [searchVal, setSearchVal] = useState("");
 
-  const queryParams = new URLSearchParams(location.search);
-  const searchQuery = queryParams.get('search');
+useEffect(() => {
+  fetchData();
+}, []);
+
+function handleSearchClick() {
+    if (searchVal === "") { setAdverts(Adverts); return; }
+    const filterBySearch = Adverts.filter((item) => {
+        if (item.title.toLowerCase()
+            .includes(searchVal.toLowerCase())) { return item; }
+    })
+    setAdverts(filterBySearch);
+}
+
+  // const navigate = useNavigate();
+
+
+
+  //  const queryParams = new URLSearchParams(location.search);
+  // const searchQuery = queryParams.get('search');
 
   const fetchData = async () => {
     try {
       let response;
 
-      if (searchQuery) {
-        // If search query exists, fetch search results from API
-        response = await fetch(`apiGetProducts?search=${title(searchQuery)}`);
-      } else {
-        // Fetch all products if no search query
         response = await apiGetProducts();
-      }
-
-
-      // const response = await apiGetProducts(); 
-      // console.log("API Response:", response);  
-
-      const data = await response.json();
-      setAdverts(data || []); 
-      // const products = response.data || []; 
-      // setAdverts(products);
+      setAdverts(response.data ); 
+      console.log("search answer here",response)
+      
     } catch (error) {
       console.error("Error fetching products:", error.message); 
     }
   };
+  // const handleSearch = (e) => {
+  //   e.preventDefault();
+  // };
 
-  useEffect(() => {
-    fetchData();
-  }, [searchQuery]);
 
   return (
     <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-hidden">
-      <NavBar />
+      <NavBar>
+      <div className="relative w-[100%]">
+          <input 
+            type="text" 
+            placeholder="Search products..." 
+            onChange={(e) => setSearchVal(e.target.value)}
+            className="w-full px-4 py-2 rounded bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <span className="absolute inset-y-0 right-0 flex items-center pr-3">
+          <button  onClick={handleSearchClick}>
+                    <IoMdSearch className="text-xl text-gray-600 group-hover:text-primary dark:text-gray-400 absolute top-1/2 -translate-y-1/2 right-3 duration-200" />
+                  </button> 
+          </span>
+        </div>
+   
+      {/* <div className='relative group hidden sm:block'>
+               
+                  <input 
+                    type="text" 
+                    placeholder="search" 
+                    className="search-bar"
+                    onChange={(e) => setSearchVal(e.target.value)}
+                  />
+                   <button  onClick={handleSearchClick}>
+                    <IoMdSearch className="text-xl text-gray-600 group-hover:text-primary dark:text-gray-400 absolute top-1/2 -translate-y-1/2 right-3 duration-200" />
+                  </button> 
+                   
+                 </div> */}
+      </NavBar>
       <nav className="container bg-white dark:bg-gray-800 p-4 mt-10">
         <ul className="flex space-x-6 justify-center text-blue">
           <li>
@@ -95,7 +130,7 @@ function Advertpage() {
       </div>
 
       <div className="container mx-auto p-10 dark:bg-gray-900">
-        <h1 className="text-2xl font-bold mb-10">PRODUCTS</h1>
+        <h1 className="text-2xl font-bold mb-10">ADVERTS</h1>
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-44">
           {Adverts.length > 0 ? (
             Adverts.map((advert) => (

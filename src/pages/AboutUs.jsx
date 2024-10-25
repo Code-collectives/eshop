@@ -87,7 +87,7 @@ function AboutUs() {
     <FaqSection />
     <div>
     <h1 className='flex items-center justify-center font-bold text-6xl tracking-tight text-black dark:text-gray-100'>
-  Buzz
+    Testimonials 
 </h1>
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10 bg-white dark:bg-gray-900 p-6">
   <MemberWrapper

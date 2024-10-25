@@ -1,20 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 import image1 from '../assets/website/profile.png';
 import DarkMode from './DrakMode';
+import { apiGetVendorProfile } from './services/product';
 
 const Sidebar = () => {
- 
-  const [userName, setUserName] = useState('Ama');
-  const [isEditing, setIsEditing] = useState(false); 
-  const [inputValue, setInputValue] = useState(userName);
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
  
-  const handleNameChange = () => {
-    setUserName(inputValue); 
-    setIsEditing(false);    
+
+  const getUser = async () => {
+    try {
+      let response;
+
+        response = await apiGetVendorProfile();
+   
+
+      
+      setUser(response.data ); 
+      // console.log("user here",response)
+      
+    } catch (error) {
+      console.error("Error fetching products:", error.message); 
+    }
   };
+
+ 
 
   return (
     <div className=" w-64 h-[100vh] fixed bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-100 p-5 max-h-screen"> 
@@ -24,36 +41,38 @@ const Sidebar = () => {
         </a>
 
        
-        {isEditing ? (
-          <input 
-            className="text-xl font-semibold text-gray-800 dark:text-gray-100 text-center bg-transparent border-b-2 outline-none"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onBlur={handleNameChange} 
-            autoFocus
-          />
-        ) : (
+       
+          <>
           <h2 
             className="text-xl font-semibold text-gray-800 dark:text-gray-100 cursor-pointer" 
-            onClick={() => setIsEditing(true)} 
+        
           >
-            {userName}
-          </h2>
-        )}
+            {user && user.name}
 
-        <button className="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50">
+          </h2>
+           <p 
+           className="text-xl font-semibold text-gray-800 dark:text-gray-100 cursor-pointer" 
+         
+         >
+           {user && user.email}
+           
+         </p>
+         </>
+ 
+        {/* <button className="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50">
           Edit Profile
         </button>
-      </div>
+        */}
+      </div> 
 
-      <div className="mt-10 flex flex-col items-center">
+      {/* <div className="mt-10 flex flex-col items-center">
         <ul className="mt-4 space-y-2">
           <li><a href="#" className="hover:text-red-600">Home</a></li>
           <li><a href="#" className="hover:text-red-600">About</a></li>
           <li><a href="#" className="hover:text-red-600">Contact</a></li>
           <li><a href="#" className="hover:text-red-600">Blog</a></li>
         </ul>
-      </div>
+      </div> */}
 
       <div className="mt-10 flex flex-col items-center">
         <h3 className="font-semibold text-lg">Contact Us</h3>
