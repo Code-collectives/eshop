@@ -61,7 +61,7 @@ function App() {
       element: <ProductForm />
     },
 
-    {path:"editform/:id",
+    {path:"/editform/:id",
       element:<EditProductForm/>
     },
   

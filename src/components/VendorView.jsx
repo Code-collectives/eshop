@@ -1,16 +1,18 @@
-import image2 from "../assets/website/image1.png";
-import { FaRegEdit } from "react-icons/fa";
-import { apiGetProducts } from '../components/services/product';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { apiGetProducts, apiGetVendorProducts } from '../components/services/product';
 import VendorApiGet from "./ApiGetVendor";
 
 const VendorView = () => {
   const [Adverts, setAdverts] = useState([]);
 
+  useEffect(() => {
+    fetchData();
+  },[]);
+
   const fetchData = async () => {
     try {
-      const response = await apiGetProducts();
+      setAdverts([]); //not the ideal approach 
+      const response = await apiGetVendorProducts();
       console.log("API Response:", response);
       const products = response.data || [];
       setAdverts(products);
@@ -19,9 +21,11 @@ const VendorView = () => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const handleProductDelete = (deletedId) => {
+    setAdverts(Adverts.filter(advert => advert.id !== deletedId));
+  };
+
+ 
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"> 
@@ -29,11 +33,13 @@ const VendorView = () => {
         Adverts.map((advert) => (
           <VendorApiGet
             key={advert.id} 
+            id={advert.id} 
             title={advert.title}
             description={advert.description}
             category={advert.category}
             media={advert.media}
             price={advert.price}
+            onDelete={handleProductDelete}  
           />
         ))
       ) : (
@@ -41,6 +47,6 @@ const VendorView = () => {
       )}
     </div>
   );
-};
+};  
 
 export default VendorView;

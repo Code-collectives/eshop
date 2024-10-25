@@ -24,7 +24,7 @@ const ProductForm = () => {
       for (let [key, value] of formData.entries()) {
         console.log(`${key}: ${value}`);
       }
-  
+      console.log('payload to be submitted:', formData);
       
       const response = await apiAddProducts(formData);
   
@@ -40,7 +40,7 @@ const ProductForm = () => {
     <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-hidden">
       <div className="max-w-md mx-auto mt-10 p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">
-          Add New Product
+          Add New Advert
         </h2>
 
         <form onSubmit={saveAdvert}>

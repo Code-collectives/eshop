@@ -1,10 +1,11 @@
 import React from 'react';
 import Navbar from '../components/Navbar2';
 import Sidebar from '../components/SideBar';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import DashFooter from '../components/DashboardFoot';
 
 const DashboardLayout = () => {
+
   return (
     <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 min-h-screen flex flex-col">
       
