@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from '../shared/Button'
-import image1 from '../assets/website/Earphone.png'
+import image1 from '../assets/website/earphone.png'
 import image2 from '../assets/website/watch.png'
 import image3 from '../assets/website/image3.png'
 function Category() {

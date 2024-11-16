@@ -42,22 +42,14 @@ const Sidebar = () => {
 
        
        
-          <>
-          <h2 
-            className="text-xl font-semibold text-gray-800 dark:text-gray-100 cursor-pointer" 
-        
-          >
-            {user && user.name}
-
-          </h2>
-           <p 
-           className="text-xl font-semibold text-gray-800 dark:text-gray-100 cursor-pointer" 
-         
-         >
-           {user && user.email}
-           
-         </p>
-         </>
+        <div className="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md max-w-sm mx-auto">
+  <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 cursor-pointer mb-1 tracking-wide">
+    {user && user.name}
+  </h2>
+  <p className="text-lg font-medium text-gray-600 dark:text-gray-300 cursor-pointer">
+    {user && user.email}
+  </p>
+</div>
  
         {/* <button className="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50">
           Edit Profile

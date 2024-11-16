@@ -84,7 +84,7 @@ const EditProductForm = () => {
     }
   };
   
-  if (loading) return <p>Loading Advert...</p>;
+  if (loading) return <p>Loading Advert       ...</p>;
   if (error) return <p>{error}</p>;
 
   return (
